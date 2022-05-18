@@ -16,7 +16,8 @@ public class GoogleSteps {
 
     @When("the user search for a word")
     public void theUserSearchForAWord() {
-        
+        google.enterSearchCriteria("automation");
+        google.clickSearchButton();
     }
 
     @Then("the results match the search criteria")
