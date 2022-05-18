@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +17,7 @@ public class BasePage {
     protected static WebDriver driver;
     private static WebDriverWait wait;
     private static Actions actions;
+    private static final String genericTable = "/table/tbody/tr[ROW]/td[COL]";
 
     static {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
@@ -62,5 +62,17 @@ public class BasePage {
 
     public static void contextClick(String locator) {
         actions.contextClick(find(locator));
+    }
+
+    public static String getValueFromTable(String locator, int row, int col) {
+        String cell = locator + "/table/tbody/tr[" + row + "]/td[" + col + "]";
+        String cellToFind = locator + genericTable.replaceAll("\bROW\b", "row").replaceAll("\bCOL\b", "col");
+        return find(cell).getText();
+    }
+
+    public static void setValueOnTable(String locator, int row, int col, String text) {
+        String cell = locator + "/table/tbody/tr[" + row + "]/td[" + col + "]";
+        String cellToFill = locator + genericTable.replaceAll("\bROW\b", "row").replaceAll("\bCOL\b", "col");
+        find(cell).sendKeys(text);
     }
 }
