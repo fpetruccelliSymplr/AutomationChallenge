@@ -31,7 +31,7 @@ public class BasePage {
     }
 
     public static void closeBrowser() {
-        driver.close();
+        driver.quit();
     }
 
     public static void navigateTo(String url) {
