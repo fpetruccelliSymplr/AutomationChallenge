@@ -30,6 +30,10 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
+    public static void closeBrowser() {
+        driver.close();
+    }
+
     public static void navigateTo(String url) {
         driver.get(url);
     }
