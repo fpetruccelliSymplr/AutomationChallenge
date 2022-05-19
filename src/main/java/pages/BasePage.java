@@ -1,8 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
@@ -88,19 +86,35 @@ public class BasePage {
     }
 
     public void switchToIFrameByIndex(int index) {
-        driver.switchTo().frame(index);
+        try {
+            driver.switchTo().frame(index);
+        } catch (NoSuchFrameException e) {
+            e.printStackTrace();
+        }
     }
 
     public void switchToParentFrame() {
-        driver.switchTo().parentFrame();
+        try {
+            driver.switchTo().parentFrame();
+        } catch (NoSuchFrameException e) {
+            e.printStackTrace();
+        }
     }
 
     public void dismissAlert() {
-        driver.switchTo().alert().dismiss();
+        try {
+            driver.switchTo().alert().dismiss();
+        } catch (NoAlertPresentException e) {
+            e.printStackTrace();
+        }
     }
 
     public void acceptAlert() {
-        driver.switchTo().alert().accept();
+        try {
+            driver.switchTo().alert().accept();
+        } catch (NoAlertPresentException e) {
+            e.printStackTrace();
+        }
     }
 
     public void sendKeysToAlert(String text) {
