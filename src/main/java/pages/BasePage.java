@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BasePage {
 
@@ -36,6 +38,10 @@ public class BasePage {
 
     private static WebElement find(String locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator)));
+    }
+
+    private static List<WebElement> findAll(String locator) {
+        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(locator)));
     }
 
     public static void clickElement(String locator) {
@@ -71,5 +77,42 @@ public class BasePage {
     public static void setValueOnTable(String locator, int row, int col, String text) {
         String cell = locator + "/table/tbody/tr[" + row + "]/td[" + col + "]";
         find(cell).sendKeys(text);
+    }
+
+    public String getTextFromElement(String locator) {
+        return find(locator).getText();
+    }
+
+    public boolean elementIsDisplayed(String locator) {
+        return find(locator).isDisplayed();
+    }
+
+    public void switchToIFrameByIndex(int index) {
+        driver.switchTo().frame(index);
+    }
+
+    public void switchToParentFrame() {
+        driver.switchTo().parentFrame();
+    }
+
+    public void dismissAlert() {
+        driver.switchTo().alert().dismiss();
+    }
+
+    public void acceptAlert() {
+        driver.switchTo().alert().accept();
+    }
+
+    public void sendKeysToAlert(String text) {
+        driver.switchTo().alert().sendKeys(text);
+    }
+
+    public List<String> getTextFromWebElementList(String locator) {
+        List<WebElement> list = findAll(locator);
+        List<String> stringList = new ArrayList<>();
+        for (WebElement e : list) {
+            stringList.add(e.getText());
+        }
+        return stringList;
     }
 }
