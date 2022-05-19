@@ -17,7 +17,6 @@ public class BasePage {
     protected static WebDriver driver;
     private static WebDriverWait wait;
     private static Actions actions;
-    private static final String genericTable = "/table/tbody/tr[ROW]/td[COL]";
 
     static {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
@@ -66,13 +65,11 @@ public class BasePage {
 
     public static String getValueFromTable(String locator, int row, int col) {
         String cell = locator + "/table/tbody/tr[" + row + "]/td[" + col + "]";
-        String cellToFind = locator + genericTable.replaceAll("\bROW\b", "row").replaceAll("\bCOL\b", "col");
         return find(cell).getText();
     }
 
     public static void setValueOnTable(String locator, int row, int col, String text) {
         String cell = locator + "/table/tbody/tr[" + row + "]/td[" + col + "]";
-        String cellToFill = locator + genericTable.replaceAll("\bROW\b", "row").replaceAll("\bCOL\b", "col");
         find(cell).sendKeys(text);
     }
 }
