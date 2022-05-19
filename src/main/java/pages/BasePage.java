@@ -124,6 +124,7 @@ public class BasePage {
     public List<String> getTextFromWebElementList(String locator) {
         List<WebElement> list = findAll(locator);
         List<String> stringList = new ArrayList<>();
+
         for (WebElement e : list) {
             stringList.add(e.getText());
         }
