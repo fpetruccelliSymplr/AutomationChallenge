@@ -8,7 +8,7 @@ import pages.BasePage;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/main/resources/features",
+        features = "src/test/resources/features",
         glue = "steps",
         tags = "@Regression"
 )
