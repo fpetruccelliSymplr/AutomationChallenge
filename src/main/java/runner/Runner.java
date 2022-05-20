@@ -9,7 +9,8 @@ import pages.BasePage;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/main/resources/features",
-        glue = "steps"
+        glue = "steps",
+        tags = "@Regression"
 )
 
 public class Runner {
