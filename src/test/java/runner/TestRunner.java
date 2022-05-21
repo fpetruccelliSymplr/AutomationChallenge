@@ -13,7 +13,7 @@ import pages.BasePage;
         tags = "@Regression"
 )
 
-public class Runner {
+public class TestRunner {
 
     @AfterClass
     public static void closeDriver() {
