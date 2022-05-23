@@ -1,4 +1,4 @@
-runner\Runner.class
 pages\BasePage.class
 pages\GooglePage.class
 steps\GoogleSteps.class
+runner\TestRunner.class
