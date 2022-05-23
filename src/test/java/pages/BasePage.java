@@ -19,15 +19,20 @@ public class BasePage {
     private static Actions actions;
 
     static {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
         driver = new ChromeDriver(chromeOptions);
+        driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public BasePage(WebDriver driver) {
         BasePage.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    public static void closeBrowser() {
+        driver.quit();
     }
 
     public static void navigateTo(String url) {
